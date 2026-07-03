@@ -23,20 +23,20 @@ const CATEGORIES = [
   "Music",
   "Health & Lifestyle",
   "Kitchen",
-  "Home Decors",
+  "Home Decor",
   "Garden",
   "Babies & Kids",
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Mounika Arrala",
-    location: "Hyderabad | Mar 2023",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=48&h=48&fit=crop&crop=face",
-    text: "I got the best Front Load Washing Machine, I am very happy with this choice. This appliance has truly elevated my laundry routine to a whole new level. The cleaning performance is outstanding, my clothes come out looking and smelling fresh every time.",
-  },
-];
+// const TESTIMONIALS = [
+//   {
+//     name: "Mounika Arrala",
+//     location: "Hyderabad | Mar 2023",
+//     avatar:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=48&h=48&fit=crop&crop=face",
+//     text: "I got the best Front Load Washing Machine, I am very happy with this choice. This appliance has truly elevated my laundry routine to a whole new level. The cleaning performance is outstanding, my clothes come out looking and smelling fresh every time.",
+//   },
+// ];
 
 const TESTIMONIAL_PHOTOS = [
   "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop",
