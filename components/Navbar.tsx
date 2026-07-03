@@ -1,17 +1,21 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { useState, useCallback, Suspense } from 'react'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import Link from "next/link";
+import { useState, useCallback, Suspense } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  { href: '/products', label: 'All Products', category: null },
-  { href: '/products?category=Home+Appliances', label: 'Home Appliances', category: 'Home Appliances' },
-  { href: '/products?category=Mobiles', label: 'Mobiles', category: 'Mobiles' },
-  { href: '/products?category=Others', label: 'Others', category: 'Others' },
-] as const
+  { href: "/products", label: "All Products", category: null },
+  {
+    href: "/products?category=Home+Appliances",
+    label: "Home Appliances",
+    category: "Home Appliances",
+  },
+  { href: "/products?category=Mobiles", label: "Mobiles", category: "Mobiles" },
+  { href: "/products?category=Others", label: "Others", category: "Others" },
+] as const;
 
 // ─── Active-link nav (isolated so only this part needs useSearchParams) ──────
 //
@@ -22,55 +26,59 @@ const NAV_LINKS = [
 // (and the rest of the app) statically rendered.
 
 function NavLinks() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const activeCategory = pathname === '/products' ? searchParams.get('category') : null
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const activeCategory =
+    pathname === "/products" ? searchParams.get("category") : null;
 
   return (
-    <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+    <nav
+      className="hidden md:flex items-center gap-6"
+      aria-label="Main navigation"
+    >
       {NAV_LINKS.map(({ href, label, category }) => {
         const isActive =
-          pathname === '/products' &&
-          (category === null ? !activeCategory : activeCategory === category)
+          pathname === "/products" &&
+          (category === null ? !activeCategory : activeCategory === category);
         return (
           <Link
             key={label}
             href={href}
             className={`text-sm whitespace-nowrap transition-colors pb-0.5 ${
               isActive
-                ? 'font-bold text-gray-900 border-b-2 border-gray-900'
-                : 'font-medium text-gray-500 hover:text-gray-900'
+                ? "font-bold text-gray-900 border-b-2 border-gray-900"
+                : "font-medium text-gray-500 hover:text-gray-900"
             }`}
           >
             {label}
           </Link>
-        )
+        );
       })}
     </nav>
-  )
+  );
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Navbar() {
-  const [search, setSearch] = useState('')
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [search, setSearch] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSearch = useCallback(
     (e: React.FormEvent) => {
-      e.preventDefault()
-      const trimmed = search.trim()
-      if (trimmed) router.push(`/products?search=${encodeURIComponent(trimmed)}`)
+      e.preventDefault();
+      const trimmed = search.trim();
+      if (trimmed)
+        router.push(`/products?search=${encodeURIComponent(trimmed)}`);
     },
     [search, router],
-  )
+  );
 
   return (
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
-
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           {/* Replace with: <Image src="/logo.png" alt="mrknown" width={110} height={32} className="h-8 w-auto" /> */}
@@ -80,7 +88,14 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <Suspense fallback={<nav className="hidden md:flex items-center gap-6" aria-label="Main navigation" />}>
+        <Suspense
+          fallback={
+            <nav
+              className="hidden md:flex items-center gap-6"
+              aria-label="Main navigation"
+            />
+          }
+        >
           <NavLinks />
         </Suspense>
 
@@ -123,15 +138,29 @@ export default function Navbar() {
         <button
           className="md:hidden p-2 text-gray-600 hover:text-gray-900"
           onClick={() => setMobileOpen((o) => !o)}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
           {mobileOpen ? (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg
+              className="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
           ) : (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg
+              className="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
               <path d="M3 12h18M3 6h18M3 18h18" />
             </svg>
           )}
@@ -157,11 +186,21 @@ export default function Navbar() {
 
           {/* Mobile search */}
           <form
-            onSubmit={(e) => { handleSearch(e); setMobileOpen(false) }}
+            onSubmit={(e) => {
+              handleSearch(e);
+              setMobileOpen(false);
+            }}
             role="search"
             className="mt-2 flex items-center border border-gray-200 rounded-full px-4 py-2 gap-2"
           >
-            <svg className="text-orange-400 w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg
+              className="text-orange-400 w-4 h-4 flex-shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
             </svg>
@@ -177,5 +216,5 @@ export default function Navbar() {
         </nav>
       )}
     </header>
-  )
+  );
 }

@@ -2,23 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   background: #ffffff;
   color: #111111;
-  -webkit-font-smoothing: antialiased;
+  /* -webkit-font-smoothing: antialiased; */
 }
 
 .line-clamp-2 {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  /* -webkit-line-clamp: 2; */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .line-clamp-1 {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  /* -webkit-line-clamp: 1; */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

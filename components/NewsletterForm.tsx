@@ -1,49 +1,49 @@
-'use client'
+"use client";
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback } from "react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type SubmitStatus = 'idle' | 'loading' | 'success' | 'error'
+type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function NewsletterForm() {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<SubmitStatus>('idle')
-  const [message, setMessage] = useState('')
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      setStatus('loading')
-      setMessage('')
+      e.preventDefault();
+      setStatus("loading");
+      setMessage("");
 
       try {
-        const res = await fetch('/api/newsletter', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const res = await fetch("/api/newsletter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
-        })
-        const data: { error?: string } = await res.json()
+        });
+        const data: { error?: string } = await res.json();
 
         if (res.ok) {
-          setStatus('success')
-          setMessage("You're in! Watch your inbox for the best deals.")
-          setEmail('')
+          setStatus("success");
+          setMessage("You're in! Watch your inbox for the best deals.");
+          setEmail("");
         } else {
-          setStatus('error')
-          setMessage(data.error ?? 'Something went wrong.')
+          setStatus("error");
+          setMessage(data.error ?? "Something went wrong.");
         }
       } catch {
-        setStatus('error')
-        setMessage('Network error. Please try again.')
+        setStatus("error");
+        setMessage("Network error. Please try again.");
       }
     },
     [email],
-  )
+  );
 
-  if (status === 'success') {
+  if (status === "success") {
     return (
       <div
         role="status"
@@ -52,7 +52,7 @@ export default function NewsletterForm() {
       >
         ✓ {message}
       </div>
-    )
+    );
   }
 
   return (
@@ -69,17 +69,17 @@ export default function NewsletterForm() {
       />
       <button
         type="submit"
-        disabled={status === 'loading'}
+        disabled={status === "loading"}
         className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-2.5 rounded-full text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
       >
-        {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
+        {status === "loading" ? "Subscribing…" : "Subscribe"}
       </button>
 
-      {status === 'error' && message && (
+      {status === "error" && message && (
         <p role="alert" className="text-red-500 text-xs mt-1 col-span-2">
           {message}
         </p>
       )}
     </form>
-  )
+  );
 }
