@@ -44,10 +44,10 @@ function NavLinks() {
           <Link
             key={label}
             href={href}
-            className={`text-sm whitespace-nowrap transition-colors pb-0.5 ${
+            className={`text-base whitespace-nowrap transition-colors pb-0.5 ${
               isActive
-                ? "font-bold text-gray-900 border-b-2 border-gray-900"
-                : "font-medium text-gray-500 hover:text-gray-900"
+                ? "font-semibold text-gray-900 border-b-2 border-gray-900"
+                : "font-regular text-gray-600 hover:text-gray-900"
             }`}
           >
             {label}
@@ -82,7 +82,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           {/* Replace with: <Image src="/logo.png" alt="mrknown" width={110} height={32} className="h-8 w-auto" /> */}
-          <span className="text-xl font-bold text-gray-900 tracking-tight">
+          <span className="text-3xl font-bold text-gray-900 tracking-tight">
             mrknown<span className="text-orange-500">.</span>
           </span>
         </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
         <form
           onSubmit={handleSearch}
           role="search"
-          className="hidden sm:flex items-center bg-white border border-gray-200 rounded-full px-4 py-2 gap-2 min-w-[180px] max-w-[220px]"
+          className="hidden sm:flex items-center bg-white border border-gray-200 rounded-full px-4 py-2 gap-2 min-w-[220px] max-w-[220px]"
         >
           <svg
             className="text-orange-400 w-4 h-4 flex-shrink-0"
@@ -122,7 +122,7 @@ export default function Navbar() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search Product"
             aria-label="Search products"
-            className="bg-transparent text-sm text-gray-700 placeholder-gray-400 focus:outline-none w-full"
+            className="bg-transparent textbase font-regular text-gray-700 placeholder-gray-400 focus:outline-none w-full"
           />
         </form>
 

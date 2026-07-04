@@ -117,3 +117,18 @@ export async function getCategories(): Promise<string[]> {
   ];
   return unique.sort();
 }
+
+export async function getLatestProducts(limit = 5) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("id, name, slug, image_url, price, category")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error("[supabase] getLatestProducts:", error.message);
+    return [];
+  }
+  return data ?? [];
+}

@@ -124,31 +124,40 @@ export default async function ProductDetailPage({
                 </div>
               )}
             </div>
+            <div>
+              <div className="flex items-center mt-5 justify-between">
+                {/* Price */}
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-extrabold text-gray-900">
+                    ₹{product.price.toLocaleString("en-IN")}
+                  </span>
+                  {discount > 0 && (
+                    <>
+                      <span className="text-gray-400 line-through text-sm">
+                        ₹{product.original_price.toLocaleString("en-IN")}
+                      </span>
+                      <span className="bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded">
+                        -{discount}%
+                      </span>
+                    </>
+                  )}
+                </div>
 
-            {/* Thumbnails — same image repeated as a visual placeholder set */}
-            {/* {product.image_url && (
-              <div className="flex gap-3 mt-3">
-                {Array.from({ length: THUMBNAIL_COUNT }, (_, i) => (
-                  <button
-                    key={i}
-                    aria-label={`View image ${i + 1} of ${product.name}`}
-                    className={`relative flex-1 aspect-square rounded-xl overflow-hidden border-2 transition-all ${
-                      i === 0
-                        ? "border-orange-400"
-                        : "border-gray-100 hover:border-gray-300"
-                    }`}
-                  >
-                    <Image
-                      src={product.image_url}
-                      alt=""
-                      fill
-                      sizes="120px"
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
+                {/* Buy CTA */}
+                <a
+                  href={product.affiliate_url}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-10 py-3.5 rounded-full text-base transition-colors shadow-md shadow-orange-200"
+                >
+                  Buy from Amazon
+                </a>
               </div>
-            )} */}
+
+              <p className="text-xs text-gray-400 mt-3">
+                * We may earn a commission — at no extra cost to you.
+              </p>
+            </div>
           </div>
 
           {/* RIGHT: Details */}
@@ -261,37 +270,6 @@ export default async function ProductDetailPage({
                 </div>
               </div>
             )}
-
-            {/* Price */}
-            <div className="flex items-center gap-3 mb-5">
-              <span className="text-2xl font-extrabold text-gray-900">
-                ₹{product.price.toLocaleString("en-IN")}
-              </span>
-              {discount > 0 && (
-                <>
-                  <span className="text-gray-400 line-through text-sm">
-                    ₹{product.original_price.toLocaleString("en-IN")}
-                  </span>
-                  <span className="bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded">
-                    -{discount}%
-                  </span>
-                </>
-              )}
-            </div>
-
-            {/* Buy CTA */}
-            <a
-              href={product.affiliate_url}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-              className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-10 py-3.5 rounded-full text-base transition-colors shadow-md shadow-orange-200"
-            >
-              Buy from Amazon
-            </a>
-
-            <p className="text-xs text-gray-400 mt-3">
-              * We may earn a commission — at no extra cost to you.
-            </p>
           </div>
         </div>
       </div>

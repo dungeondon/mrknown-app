@@ -24,7 +24,7 @@ function SliderCard({ product }: { product: Product }) {
       aria-label={`View ${product.name}`}
     >
       {/* Image */}
-      <div className="relative bg-gray-50 h-52 overflow-hidden rounded-t-2xl">
+      <div className="relative bg-gray-50 h-80 overflow-hidden rounded-t-2xl">
         {product.image_url ? (
           <Image
             src={product.image_url}
@@ -53,17 +53,17 @@ function SliderCard({ product }: { product: Product }) {
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-xs font-bold text-orange-500 uppercase tracking-wide">
+          <span className="text-sm font-semibold text-orange-500 uppercase tracking-wide">
             {product.category}
           </span>
           <div
             className="flex items-center gap-1"
             aria-label={`Rating: ${product.rating}`}
           >
-            <span className="text-amber-400 text-xs" aria-hidden="true">
+            <span className="text-amber-400 text-sm" aria-hidden="true">
               ★
             </span>
-            <span className="text-xs font-semibold text-gray-700">
+            <span className="text-sm font-semibold text-gray-700">
               {product.rating}
             </span>
             <span className="text-xs text-gray-400">
@@ -72,25 +72,25 @@ function SliderCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <h3 className="font-bold text-gray-900 text-sm leading-snug line-clamp-2 mb-1">
+        <h3 className="font-bold text-gray-8900 text-lg leading-snug line-clamp-2 mb-4">
           {product.name}
         </h3>
-        <p className="text-gray-400 text-xs line-clamp-1 mb-4">
+        {/* <p className="text-gray-400 text-xs line-clamp-1 mb-4">
           {product.tagline}
-        </p>
+        </p> */}
 
         <div className="mt-auto flex items-center justify-between">
           <div className="flex items-baseline gap-2">
-            <span className="text-base font-bold text-gray-900">
+            <span className="text-xl font-bold text-gray-900">
               ₹{product.price.toLocaleString("en-IN")}
             </span>
             {discount > 0 && (
-              <span className="text-xs text-gray-400 line-through">
+              <span className="text-sm text-gray-400 line-through">
                 ₹{product.original_price.toLocaleString("en-IN")}
               </span>
             )}
           </div>
-          <span className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">
+          <span className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-1.5 rounded-full transition-colors">
             Buy Now
           </span>
         </div>

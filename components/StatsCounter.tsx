@@ -15,9 +15,9 @@ interface Stat {
 
 const STATS: Stat[] = [
   { label: "Best Home Appliances", target: 120, suffix: "+", unit: "Products" },
-  { label: "Best Mobile Phones",   target: 180, suffix: "+", unit: "Mobiles"  },
-  { label: "Best Wearables",       target: 50,  suffix: "+", unit: "Devices"  },
-  { label: "Others",               target: 1500, suffix: "+", unit: "Products" },
+  { label: "Best Mobile Phones", target: 180, suffix: "+", unit: "Mobiles" },
+  { label: "Best Wearables", target: 50, suffix: "+", unit: "Devices" },
+  { label: "Other Products", target: 1500, suffix: "+", unit: "Products" },
 ];
 
 // ─── Hook: count up when element enters viewport ───────────────────────────
@@ -54,11 +54,12 @@ function StatItem({ stat, triggered }: { stat: Stat; triggered: boolean }) {
 
   return (
     <div className="px-6 py-5">
-      <p className="text-xs text-gray-500 mb-1">{stat.label}</p>
-      <p className="text-3xl font-extrabold text-orange-500 leading-none tabular-nums">
-        {count.toLocaleString("en-IN")}{stat.suffix}
+      <p className="text-3xl font-semibold text-orange-500  mb-2 leading-none tabular-nums">
+        {count.toLocaleString("en-IN")}
+        {stat.suffix}
       </p>
-      <p className="text-base font-bold text-gray-900 mt-0.5">{stat.unit}</p>
+      <p className="text-base text-gray-700 mb-1">{stat.label}</p>
+      {/* <p className="text-xl font-semibold text-gray-900 mt-0.5">{stat.unit}</p> */}
     </div>
   );
 }
@@ -80,7 +81,7 @@ export default function StatsCounter() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     observer.observe(el);
@@ -90,7 +91,7 @@ export default function StatsCounter() {
   return (
     <section
       ref={ref}
-      className="border-y border-gray-100 bg-white py-2"
+      className="border-y border-gray-100 bg-white py-2 my-5"
       aria-label="Site statistics"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
